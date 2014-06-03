@@ -1,4 +1,4 @@
-# DJ Skeletor
+# DJ Skeletor with AngularJS, Grunt, Yoeman and Bower
 
 DJ Skeletor is a skeleton Django project handy for quick bootstrapping of new
 empty Django projects. It will help you get up and running with your project
@@ -19,6 +19,20 @@ of useful Django application and setup for development, production and
 
     # set up the development environment
     make dev-setup
+
+    # setup yoeman, grunt, bower
+    npm install -g yo grunt-cli bower
+    # and AngularJS yoeman generator
+    npm install -g generator-angular
+    # and at the end run
+    yo angular # see diff file change in wizard, you must answer all of that NO :P
+    
+    # now you could use this command to create a angular files
+    # read Yoeman document
+    # yo angular:controller myController
+    # yo angular:directive myDirective
+    # yo angular:filter myFilter
+    # yo angular:service myService
 
     # run your fully operational Django project
     python manage.py runserver_plus
