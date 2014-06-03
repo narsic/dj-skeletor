@@ -12,3 +12,11 @@ dev.db
 celery
 *.swp
 *.swo
+node_modules
+dist
+.tmp
+.sass-cache
+app/
+project/staticfiles/bower_components
+test
+npm-debug.log
