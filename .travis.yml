@@ -4,4 +4,5 @@ python:
 install:
   - pip install -r requirements/base.txt
 script:
+  - "pep8 --exclude=migrations --ignore=E501,E225 apps"
   - pyflakes -x W apps
