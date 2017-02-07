@@ -1,0 +1,13 @@
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install python2.7 make python-pip libssl-dev -y
+RUN apt-get install rabbitmq-server -y
+
+RUN alias python=python2.7
+WORKDIR /project
+ADD ../ /project
+RUN make dev-setup
+
+EXPOSE 5672
+
+CMD supervisord -c /project/supervisord.conf

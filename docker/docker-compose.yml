@@ -1,0 +1,12 @@
+version: '2'
+services:
+   celery:
+     build: Dockerfile.celery
+     ports:
+       - "5672:5672"
+   web:
+     build: Dockerfile.web
+     #volumes:
+     #  - .:/project
+     ports:
+       - "80:80"
