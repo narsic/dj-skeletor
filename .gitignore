@@ -12,3 +12,4 @@ dev.db
 celery
 *.swp
 *.swo
+log
