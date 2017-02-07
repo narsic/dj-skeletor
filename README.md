@@ -35,7 +35,6 @@ of useful Django application and setup for development, production and
     - python manage.py celeryd
     - python manage.py celerybeat
     
-
 ### Batteries included
 
 The development environment by default includes:
