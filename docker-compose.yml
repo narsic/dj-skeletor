@@ -1,0 +1,22 @@
+version: '2'
+services:
+   base:
+     build: .
+   web:
+     extends:
+       service: base
+     ports:
+       - 80:80
+     depends_on:
+       - base
+     command: ./gunicorn_start
+   celery:
+     extends:
+       service: base
+     ports:
+       - 5672:5672
+     environment:
+       - C_FORCE_ROOT=1
+     depends_on:
+       - base
+     command: supervisord -c /project/supervisord.conf
