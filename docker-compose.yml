@@ -1,7 +1,10 @@
-version: '2'
+version: '2.1'
+
 services:
    base:
      build: .
+     volumes:
+       - .:/project
    web:
      extends:
        service: base
@@ -10,6 +13,11 @@ services:
      depends_on:
        - base
      command: ./gunicorn_start
+     healthcheck:
+       test: ["CMD", "curl", "-f", "http://localhost"]
+       interval: 1m30s
+       timeout: 10s
+       retries: 3
    celery:
      extends:
        service: base
@@ -20,3 +28,4 @@ services:
      depends_on:
        - base
      command: supervisord -c /project/supervisord.conf
+

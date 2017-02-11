@@ -36,8 +36,10 @@ reqs/dev: ensure_virtualenv
 reqs/test: ensure_virtualenv
 	pip install -r requirements/test.txt
 
-reqs/prod: ensure_virtualenv
+reqs/prod:
 	pip install -r requirements/prod.txt
+
+prod-setup: reqs/prod
 
 dev-setup: ensure_virtualenv reqs/dev
 	if [ ! -f $(PROJECT_NAME)/settings/local.py ]; then \
