@@ -1,0 +1,31 @@
+version: '2.1'
+
+services:
+   base:
+     build: .
+     volumes:
+       - .:/project
+   web:
+     extends:
+       service: base
+     ports:
+       - 80:80
+     depends_on:
+       - base
+     command: ./gunicorn_start
+     healthcheck:
+       test: ["CMD", "curl", "-f", "http://localhost"]
+       interval: 1m30s
+       timeout: 10s
+       retries: 3
+   celery:
+     extends:
+       service: base
+     ports:
+       - 5672:5672
+     environment:
+       - C_FORCE_ROOT=1
+     depends_on:
+       - base
+     command: supervisord -c /project/supervisord.conf
+

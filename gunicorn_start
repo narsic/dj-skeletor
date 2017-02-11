@@ -2,8 +2,8 @@
  
 NAME="project"                               # Name of the application
 DJANGODIR=$PWD                               # Django project directory
-BIND=0.0.0.0:8000                            # we will communicte using this unix socket
-USER=$USER                                   # the user to run as
+BIND=0.0.0.0:80                            # we will communicte using this unix socket
+USER=root                                    # the user to run as
 GROUP=$USER                                  # the group to run as
 NUM_WORKERS=1                                # how many worker processes should Gunicorn spawn
 DJANGO_SETTINGS_MODULE=project.settings      # which settings file should Django use
