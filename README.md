@@ -62,6 +62,7 @@ The development environment by default includes:
 The production environment by default includes:
 
 * South for database migrations (both development and production use it)
+* [Docker Compose](http://github.com/docker/docker-compose) Single Point To Deploy, Docker Compose
 * [Gunicorn](http://gunicorn.org/) integration
 * [Django Compressor](http://django_compressor.readthedocs.org/en/master/)
   for CSS/JS asset minification and compilation
@@ -329,5 +330,5 @@ If you do want to change the project name though, there's couple of things
 you need to do. For example, if you want to rename the project to *foo*:
 
 * rename the folder: `git mv project foo`
-* update `Makefile`, `manage.py` and˛`fabfile` to set `PROJECT_NAME` to `foo`
+* update `Makefile`, `docker-compose.yml`, `manage.py` and˛`fabfile` to set `PROJECT_NAME` to `foo`
 * commit the changes to your git repository and you're done!

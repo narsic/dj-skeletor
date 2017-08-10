@@ -5,6 +5,9 @@ services:
      build: .
      volumes:
        - .:/project
+     environment:
+       - DEBUG=FALSE
+       - TEMPLATE_DEBUG=FALSE
    web:
      extends:
        service: base
@@ -12,20 +15,37 @@ services:
        - 80:80
      depends_on:
        - base
+       - db
      command: ./gunicorn_start
      healthcheck:
        test: ["CMD", "curl", "-f", "http://localhost"]
        interval: 1m30s
        timeout: 10s
        retries: 3
+     links:
+       - "db:database"
    celery:
      extends:
        service: base
-     ports:
-       - 5672:5672
      environment:
        - C_FORCE_ROOT=1
      depends_on:
        - base
+       - db
+       - amqp
      command: supervisord -c /project/supervisord.conf
+     links:
+       - "db:database"
+   db:
+     image: postgres
+     volumes:
+       - ./postgresql/data:/var/lib/postgresql/data
+   amqp:
+     image: rabbitmq
+     ports:
+       - 5672:5672
+     volumes:
+       - ./rabbitmq/mnesia:/var/lib/rabbitmq/mnesia
+     environment:
+       - RABBITMQ_MNESIA_BASE=/var/lib/rabbitmq/mnesia
 
