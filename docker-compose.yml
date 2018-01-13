@@ -39,13 +39,13 @@ services:
    db:
      image: postgres
      volumes:
-       - ./postgresql/data:/var/lib/postgresql/data
+       - ./data/postgresql/data:/var/lib/postgresql/data
    amqp:
      image: rabbitmq
      ports:
        - 5672:5672
      volumes:
-       - ./rabbitmq/mnesia:/var/lib/rabbitmq/mnesia
+       - ./data/rabbitmq/mnesia:/var/lib/rabbitmq/mnesia
      environment:
        - RABBITMQ_MNESIA_BASE=/var/lib/rabbitmq/mnesia
 
